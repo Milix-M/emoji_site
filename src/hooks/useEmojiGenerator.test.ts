@@ -53,6 +53,10 @@ describe('useEmojiGenerator', () => {
   });
 
   it('should set error state if fetchFonts fails', async () => {
+    const consoleErrorSpy = vi
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
+
     vi.mocked(api.fetchFonts).mockRejectedValue(new Error('Failed to fetch'));
 
     const { result } = renderHook(() => useEmojiGenerator());
@@ -60,6 +64,8 @@ describe('useEmojiGenerator', () => {
     await waitFor(() => {
       expect(result.current.error).toContain('フォントの読み込みに失敗');
     });
+
+    consoleErrorSpy.mockRestore();
   });
 
   it('should set error state if generateEmoji fails', async () => {
