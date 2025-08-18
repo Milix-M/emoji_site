@@ -39,29 +39,29 @@ SlackやDiscordなどのカスタム絵文字として利用可能な、テキ�
 
 1. **依存関係のインストール:**
 
-    ```sh
-    npm install
-    ```
+   ```sh
+   npm install
+   ```
 
 2. **バックエンドサーバー:**
-    このプロジェクトは、画像生成を行うバックエンドAPIを別途必要とします。APIサーバーを `http://localhost:8000` で起動してください。
+   このプロジェクトは、画像生成を行うバックエンドAPIを別途必要とします。APIサーバーを `http://localhost:8000` で起動してください。
 
 3. **環境変数の設定:**
-    プロジェクトのルートに `.env` ファイルを作成し、バックエンドAPIのURLを設定します。
+   プロジェクトのルートに `.env` ファイルを作成し、バックエンドAPIのURLを設定します。
 
-    ```env
-    PUBLIC_API_BASE_URL=http://localhost:8000
-    ```
+   ```env
+   PUBLIC_API_BASE_URL=http://localhost:8000
+   ```
 
 ## 🧞 コマンド
 
-| コマンド | 説明 |
-| :--- | :--- |
-| `npm run dev` | 開発サーバーを起動します (`localhost:4321`) |
-| `npm run build` | 本番用にプロジェクトをビルドします (`./dist/`) |
-| `npm run preview` | ビルド成果物をローカルでプレビューします |
-| `npm run test` | Vitestでユニットテストを実行します |
-| `npm run test:ui` | VitestのUIモードでテストを実行します |
-| `npm run lint` | ESLintでコードの静的解析を実行します |
-| `npm run format` | Prettierでコードをフォーマットします |
-| `npm run astro ...` | AstroのCLIコマンドを実行します |
+| コマンド            | 説明                                           |
+| :------------------ | :--------------------------------------------- |
+| `npm run dev`       | 開発サーバーを起動します (`localhost:4321`)    |
+| `npm run build`     | 本番用にプロジェクトをビルドします (`./dist/`) |
+| `npm run preview`   | ビルド成果物をローカルでプレビューします       |
+| `npm run test`      | Vitestでユニットテストを実行します             |
+| `npm run test:ui`   | VitestのUIモードでテストを実行します           |
+| `npm run lint`      | ESLintでコードの静的解析を実行します           |
+| `npm run format`    | Prettierでコードをフォーマットします           |
+| `npm run astro ...` | AstroのCLIコマンドを実行します                 |
