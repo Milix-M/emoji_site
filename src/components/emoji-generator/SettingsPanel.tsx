@@ -88,7 +88,9 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div>
-          <p className="mb-2 block text-sm font-medium text-gray-600">文字揃え</p>
+          <p className="mb-2 block text-sm font-medium text-gray-600">
+            文字揃え
+          </p>
           <div className="flex w-full rounded-lg bg-gray-200 p-1">
             {(['left', 'center', 'right'] as const).map((align) => (
               <button
