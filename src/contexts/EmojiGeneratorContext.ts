@@ -1,30 +1,25 @@
-import {
-  createContext,
-  useContext,
-  type Dispatch,
-  type SetStateAction,
-} from 'react';
+import { createContext, useContext } from 'react';
 import type { FontCategory } from '@lib/api';
 
 type TextAlign = 'left' | 'center' | 'right';
 
 export interface EmojiGeneratorContextType {
   text: string;
-  setText: Dispatch<SetStateAction<string>>;
+  setText: (text: string) => void;
   font: string;
-  setFont: Dispatch<SetStateAction<string>>;
+  setFont: (font: string) => void;
   textColor: string;
-  setTextColor: Dispatch<SetStateAction<string>>;
+  setTextColor: (color: string) => void;
   backgroundColor: string;
-  setBackgroundColor: Dispatch<SetStateAction<string>>;
+  setBackgroundColor: (color: string) => void;
   useBackgroundColor: boolean;
-  setUseBackgroundColor: Dispatch<SetStateAction<boolean>>;
+  setUseBackgroundColor: (use: boolean) => void;
   textAlign: TextAlign;
-  setTextAlign: Dispatch<SetStateAction<TextAlign>>;
+  setTextAlign: (align: TextAlign) => void;
   isSizeFixed: boolean;
-  setIsSizeFixed: Dispatch<SetStateAction<boolean>>;
+  setIsSizeFixed: (isFixed: boolean) => void;
   isStretchDisabled: boolean;
-  setIsStretchDisabled: Dispatch<SetStateAction<boolean>>;
+  setIsStretchDisabled: (isDisabled: boolean) => void;
   fontCategories: FontCategory[];
   generatedImage: string | null;
   isLoading: boolean;
