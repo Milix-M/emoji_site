@@ -25,6 +25,21 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap"
       rel="stylesheet"
     />
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      type="text/partytown"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-4XFGCY8KB6"></script>
+    <script is:inline type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-4XFGCY8KB6');
+    </script>
   </head>
   <body class="bg-gray-100 font-sans text-gray-800">
     <slot />
