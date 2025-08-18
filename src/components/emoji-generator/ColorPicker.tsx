@@ -27,7 +27,7 @@ const RgbaInputFields: FC<{
         <div key={part}>
           <label
             htmlFor={`${part}-input`}
-            className="block text-xs font-medium uppercase text-gray-400"
+            className="block text-xs font-medium uppercase text-gray-500"
           >
             {part}
           </label>
@@ -39,7 +39,7 @@ const RgbaInputFields: FC<{
             min={0}
             max={part === 'a' ? 1 : 255}
             step={part === 'a' ? 0.01 : 1}
-            className="mt-1 w-full rounded border border-gray-600 bg-gray-900 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+            className="mt-1 w-full rounded border border-gray-300 bg-white p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           />
         </div>
       ))}
@@ -76,7 +76,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({
 
   return (
     <div>
-      <label className="mb-2 block text-sm font-medium text-gray-300">
+      <label className="mb-2 block text-sm font-medium text-gray-600">
         {label}
       </label>
       {presetColors.length > 0 && (
@@ -86,7 +86,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({
               key={preset}
               type="button"
               onClick={() => handlePresetClick(preset)}
-              className={`h-8 w-8 rounded-full border-2 transition ${color.toLowerCase().startsWith(preset.toLowerCase()) ? 'scale-110 border-blue-500' : 'border-gray-600'}`}
+              className={`h-8 w-8 rounded-full border-2 transition ${color.toLowerCase().startsWith(preset.toLowerCase()) ? 'scale-110 border-blue-500' : 'border-gray-300'}`}
               style={{ backgroundColor: preset }}
               aria-label={`Set color to ${preset}`}
             />

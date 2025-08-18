@@ -24,7 +24,7 @@ export const PreviewPanel: FC<PreviewPanelProps> = ({ className }) => {
         <div className="w-full">
           <div className="flex w-full justify-center gap-4">
             <div>
-              <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-lg bg-gray-100 ring-2 ring-gray-600">
+              <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-lg bg-gray-100 ring-2 ring-gray-300">
                 <img
                   src={generatedImage}
                   alt="Generated Emoji on light background"
@@ -33,7 +33,7 @@ export const PreviewPanel: FC<PreviewPanelProps> = ({ className }) => {
               </div>
             </div>
             <div>
-              <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-lg bg-gray-900 ring-2 ring-gray-600">
+              <div className="flex h-32 w-32 items-center justify-center overflow-hidden rounded-lg bg-gray-900 ring-2 ring-gray-300">
                 <img
                   src={generatedImage}
                   alt="Generated Emoji on dark background"
@@ -45,11 +45,11 @@ export const PreviewPanel: FC<PreviewPanelProps> = ({ className }) => {
         </div>
       ) : (
         <div className="mx-auto flex h-48 w-48 items-center justify-center">
-          <span className="text-gray-400">ここに表示</span>
+          <span className="text-gray-500">ここに表示</span>
         </div>
       )}
 
-      {error && <p className="mt-4 text-center text-red-400">{error}</p>}
+      {error && <p className="mt-4 text-center text-red-500">{error}</p>}
 
       {generatedImage && !isLoading && (
         <a
@@ -62,7 +62,7 @@ export const PreviewPanel: FC<PreviewPanelProps> = ({ className }) => {
       )}
 
       {/* Ad Placement Area */}
-      <div className="mx-auto mt-8 w-full max-w-xs rounded-lg bg-gray-700 p-4 text-center text-sm text-gray-400">
+      <div className="mx-auto mt-8 w-full max-w-xs rounded-lg bg-gray-200 p-4 text-center text-sm text-gray-500">
         {adContent ? (
           <div dangerouslySetInnerHTML={{ __html: adContent }} />
         ) : (
