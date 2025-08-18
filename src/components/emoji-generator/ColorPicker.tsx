@@ -1,0 +1,106 @@
+import { type FC, useMemo } from 'react';
+import { HexColorPicker } from 'react-colorful';
+import { type Rgba, hexToRgba, rgbaToHex } from '@lib/colorUtils';
+
+// --- Sub-components ---
+
+const RgbaInputFields: FC<{
+  color: string;
+  onChange: (color: string) => void;
+}> = ({ color, onChange }) => {
+  const rgba = useMemo(() => hexToRgba(color), [color]);
+
+  const handleRgbaChange = (part: keyof Rgba, value: number) => {
+    if (isNaN(value)) return;
+    const newRgba = { ...rgba, [part]: value };
+    if (part !== 'a') {
+      newRgba[part] = Math.max(0, Math.min(255, value));
+    } else {
+      newRgba.a = Math.max(0, Math.min(1, value));
+    }
+    onChange(rgbaToHex(newRgba));
+  };
+
+  return (
+    <div className="mt-4 grid grid-cols-4 gap-3">
+      {(['r', 'g', 'b', 'a'] as const).map((part) => (
+        <div key={part}>
+          <label
+            htmlFor={`${part}-input`}
+            className="block text-xs font-medium uppercase text-gray-500"
+          >
+            {part}
+          </label>
+          <input
+            id={`${part}-input`}
+            type="number"
+            value={part === 'a' ? rgba.a.toFixed(2) : rgba[part]}
+            onChange={(e) => handleRgbaChange(part, parseFloat(e.target.value))}
+            min={0}
+            max={part === 'a' ? 1 : 255}
+            step={part === 'a' ? 0.01 : 1}
+            className="mt-1 w-full rounded border border-gray-300 bg-white p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// --- Main ColorPicker Component ---
+
+interface ColorPickerProps {
+  label: string;
+  color: string;
+  onColorChange: (color: string) => void;
+  presetColors?: string[];
+}
+
+export const ColorPicker: FC<ColorPickerProps> = ({
+  label,
+  color,
+  onColorChange,
+  presetColors = [],
+}) => {
+  const handlePresetClick = (preset: string) => {
+    const currentAlpha = hexToRgba(color).a;
+    const { r, g, b } = hexToRgba(preset);
+    onColorChange(rgbaToHex({ r, g, b, a: currentAlpha }));
+  };
+
+  const handlePickerChange = (newColor: string) => {
+    const { r, g, b } = hexToRgba(newColor);
+    const currentA = hexToRgba(color).a;
+    onColorChange(rgbaToHex({ r, g, b, a: currentA }));
+  };
+
+  return (
+    <div>
+      <label className="mb-2 block text-sm font-medium text-gray-600">
+        {label}
+      </label>
+      {presetColors.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          {presetColors.map((preset) => (
+            <button
+              key={preset}
+              type="button"
+              onClick={() => handlePresetClick(preset)}
+              className={`h-8 w-8 rounded-full border-2 transition ${color.toLowerCase().startsWith(preset.toLowerCase()) ? 'scale-110 border-blue-500' : 'border-gray-300'}`}
+              style={{ backgroundColor: preset }}
+              aria-label={`Set color to ${preset}`}
+            />
+          ))}
+        </div>
+      )}
+      <div className="h-auto w-full">
+        <HexColorPicker
+          color={color}
+          onChange={handlePickerChange}
+          style={{ width: '100%', height: '150px' }}
+        />
+        <RgbaInputFields color={color} onChange={onColorChange} />
+      </div>
+    </div>
+  );
+};
