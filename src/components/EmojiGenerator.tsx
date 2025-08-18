@@ -9,9 +9,9 @@ const EmojiGenerator: FC = () => {
 
   return (
     <EmojiGeneratorProvider value={emojiGeneratorState}>
-      <div className="card mx-auto max-w-4xl rounded-lg bg-gray-800 p-6 p-8 shadow-lg">
+      <div className="card mx-auto max-w-4xl rounded-lg border border-gray-200 bg-gray-50 p-6 p-8 shadow-lg">
         <h2 className="mb-6 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-center text-4xl font-extrabold tracking-tight text-transparent">
-          絵文字ジェネレーター
+          文字スタンプメーカー (Beta)
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <SettingsPanel className="md:col-span-2" />

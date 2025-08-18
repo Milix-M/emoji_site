@@ -37,7 +37,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
         <div>
           <label
             htmlFor="text"
-            className="mb-2 block text-sm font-medium text-gray-300"
+            className="mb-2 block text-sm font-medium text-gray-600"
           >
             テキスト
           </label>
@@ -45,7 +45,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
             id="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full rounded border border-gray-600 bg-gray-700 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             rows={3}
             maxLength={20}
           />
@@ -54,7 +54,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
         <div>
           <label
             htmlFor="font"
-            className="mb-2 block text-sm font-medium text-gray-300"
+            className="mb-2 block text-sm font-medium text-gray-600"
           >
             フォント
           </label>
@@ -62,7 +62,7 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
             id="font"
             value={font}
             onChange={(e) => setFont(e.target.value)}
-            className="w-full rounded border border-gray-600 bg-gray-700 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded border border-gray-300 bg-gray-50 p-2 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             disabled={fontCategories.length === 0}
           >
             {fontCategories.length === 0 ? (
@@ -86,58 +86,60 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
         </div>
       </div>
 
-      <div>
-        <p className="mb-2 block text-sm font-medium text-gray-300">文字揃え</p>
-        <div className="flex w-full rounded-lg bg-gray-700 p-1">
-          {(['left', 'center', 'right'] as const).map((align) => (
-            <button
-              key={align}
-              type="button"
-              onClick={() => setTextAlign(align)}
-              className={`flex flex-1 items-center justify-center rounded-md p-2 transition-colors ${textAlign === align ? 'bg-blue-600 text-white' : 'text-gray-400 hover:bg-gray-600'}`}
-            >
-              {align === 'left' && <AlignLeft size={20} />}
-              {align === 'center' && <AlignCenter size={20} />}
-              {align === 'right' && <AlignRight size={20} />}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <p className="mb-2 block text-sm font-medium text-gray-300">
-          詳細オプション
-        </p>
-        <div className="space-y-2">
-          <div className="flex items-center gap-3">
-            <input
-              id="isSizeFixed"
-              type="checkbox"
-              checked={isSizeFixed}
-              onChange={(e) => setIsSizeFixed(e.target.checked)}
-              className="h-5 w-5 rounded border-gray-600 bg-gray-700 text-blue-600 focus:ring-blue-500"
-            />
-            <label
-              htmlFor="isSizeFixed"
-              className="cursor-pointer text-gray-300"
-            >
-              文字サイズを固定する
-            </label>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div>
+          <p className="mb-2 block text-sm font-medium text-gray-600">文字揃え</p>
+          <div className="flex w-full rounded-lg bg-gray-200 p-1">
+            {(['left', 'center', 'right'] as const).map((align) => (
+              <button
+                key={align}
+                type="button"
+                onClick={() => setTextAlign(align)}
+                className={`flex flex-1 items-center justify-center rounded-md p-2 transition-colors ${textAlign === align ? 'bg-blue-600 text-white' : 'text-gray-500 hover:bg-gray-300'}`}
+              >
+                {align === 'left' && <AlignLeft size={20} />}
+                {align === 'center' && <AlignCenter size={20} />}
+                {align === 'right' && <AlignRight size={20} />}
+              </button>
+            ))}
           </div>
-          <div className="flex items-center gap-3">
-            <input
-              id="isStretchDisabled"
-              type="checkbox"
-              checked={isStretchDisabled}
-              onChange={(e) => setIsStretchDisabled(e.target.checked)}
-              className="h-5 w-5 rounded border-gray-600 bg-gray-700 text-blue-600 focus:ring-blue-500"
-            />
-            <label
-              htmlFor="isStretchDisabled"
-              className="cursor-pointer text-gray-300"
-            >
-              自動で伸縮しない
-            </label>
+        </div>
+
+        <div>
+          <p className="mb-2 block text-sm font-medium text-gray-600">
+            詳細オプション
+          </p>
+          <div className="space-y-2">
+            <div className="flex items-center gap-3">
+              <input
+                id="isSizeFixed"
+                type="checkbox"
+                checked={isSizeFixed}
+                onChange={(e) => setIsSizeFixed(e.target.checked)}
+                className="h-5 w-5 rounded border-gray-300 bg-gray-200 text-blue-600 focus:ring-blue-500"
+              />
+              <label
+                htmlFor="isSizeFixed"
+                className="cursor-pointer text-gray-600"
+              >
+                フォントサイズ固定
+              </label>
+            </div>
+            <div className="flex items-center gap-3">
+              <input
+                id="isStretchDisabled"
+                type="checkbox"
+                checked={isStretchDisabled}
+                onChange={(e) => setIsStretchDisabled(e.target.checked)}
+                className="h-5 w-5 rounded border-gray-300 bg-gray-200 text-blue-600 focus:ring-blue-500"
+              />
+              <label
+                htmlFor="isStretchDisabled"
+                className="cursor-pointer text-gray-600"
+              >
+                自動で伸縮しない
+              </label>
+            </div>
           </div>
         </div>
       </div>
@@ -156,11 +158,11 @@ export const SettingsPanel: FC<SettingsPanelProps> = ({ className }) => {
             type="checkbox"
             checked={useBackgroundColor}
             onChange={(e) => setUseBackgroundColor(e.target.checked)}
-            className="h-5 w-5 rounded border-gray-600 bg-gray-700 text-blue-600 focus:ring-blue-500"
+            className="h-5 w-5 rounded border-gray-300 bg-gray-200 text-blue-600 focus:ring-blue-500"
           />
           <label
             htmlFor="useBackgroundColor"
-            className="cursor-pointer text-gray-300"
+            className="cursor-pointer text-gray-600"
           >
             背景色を追加する
           </label>
